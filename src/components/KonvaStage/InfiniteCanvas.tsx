@@ -1,35 +1,14 @@
-import { useState } from 'react'
 import { Stage, Layer, Rect, Circle, Star } from 'react-konva'
-import './KonvaStage.css'
+import './InfiniteCanvas.css'
 import Konva from 'konva'
 import { KonvaEventObject } from 'konva/lib/Node'
+import { Shape } from '../../types'
 
-const InfiniteCanvas = (props: { tool: string }) => {
-  type Shape = CustomCircle | CustomRectangle | CustomTriangle
-
-  type SimpleShape = {
-    x: number
-    y: number
-    fill: string
-  }
-
-  type CustomCircle = SimpleShape & {
-    type: 'circle'
-    radius: number
-  }
-
-  type CustomRectangle = SimpleShape & {
-    type: 'rect'
-    width: number
-    height: number
-  }
-
-  type CustomTriangle = SimpleShape & {
-    type: 'triangle'
-    innerRadius: number
-    outerRadius: number
-  }
-
+const InfiniteCanvas = (props: {
+  tool: string
+  setShapes: React.Dispatch<React.SetStateAction<Shape[]>>
+  shapes: Shape[]
+}) => {
   const getRelativePointerPosition = (
     node: Konva.Node,
   ): { x: number; y: number } => {
@@ -40,8 +19,6 @@ const InfiniteCanvas = (props: { tool: string }) => {
     )
   }
 
-  const [shapes, setShapes] = useState<Shape[]>([])
-
   const handleCanvasClick = (event: KonvaEventObject<MouseEvent>) => {
     const stage = event.target.getStage()
     if (stage) {
@@ -49,7 +26,7 @@ const InfiniteCanvas = (props: { tool: string }) => {
 
       switch (props.tool) {
         case 'circle': {
-          setShapes((prev) => [
+          props.setShapes((prev) => [
             ...prev,
             {
               type: 'circle',
@@ -62,7 +39,7 @@ const InfiniteCanvas = (props: { tool: string }) => {
           break
         }
         case 'rectangle': {
-          setShapes((prev) => [
+          props.setShapes((prev) => [
             ...prev,
             {
               type: 'rect',
@@ -76,7 +53,7 @@ const InfiniteCanvas = (props: { tool: string }) => {
           break
         }
         case 'triangle': {
-          setShapes((prev) => [
+          props.setShapes((prev) => [
             ...prev,
             {
               type: 'triangle',
@@ -151,7 +128,7 @@ const InfiniteCanvas = (props: { tool: string }) => {
       onClick={handleCanvasClick}
       className="stage"
     >
-      <Layer>{handleGetShape(shapes)}</Layer>
+      <Layer>{handleGetShape(props.shapes)}</Layer>
     </Stage>
   )
 }

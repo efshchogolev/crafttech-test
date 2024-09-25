@@ -3,6 +3,7 @@ import './Toolbar.css'
 const Toolbar = (props: {
   setTool: React.Dispatch<React.SetStateAction<string>>
   tool: string
+  onClearShapes: () => void
 }) => {
   return (
     <div className="toolbar">
@@ -19,7 +20,11 @@ const Toolbar = (props: {
       </select>
 
       <button className="toolbar__button" onClick={() => props.setTool('')}>
-        cursor
+        Cursor
+      </button>
+
+      <button className="toolbar__button" onClick={() => props.onClearShapes()}>
+        Clear Canvas
       </button>
     </div>
   )
