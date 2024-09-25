@@ -3,7 +3,8 @@ import { Stage, Layer, Rect, Circle, Star } from 'react-konva'
 import './KonvaStage.css'
 import Konva from 'konva'
 import { KonvaEventObject } from 'konva/lib/Node'
-const InfiniteCanvas = (props: { tool: string | null }) => {
+
+const InfiniteCanvas = (props: { tool: string }) => {
   type Shape = CustomCircle | CustomRectangle | CustomTriangle
 
   type SimpleShape = {

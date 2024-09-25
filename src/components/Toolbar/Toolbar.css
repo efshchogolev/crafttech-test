@@ -1,19 +1,18 @@
 .toolbar {
   display: flex;
   position: fixed;
-  /* top: 0; */
-  /* left: 50%; */
-  /* transform: translate(-50%, 0); */
   background-color: #fff;
-  width: 200px;
+  width: fit-content;
   height: fit-content;
   padding: 10px;
+  gap: 10px;
   box-sizing: border-box;
   border-radius: 10px;
   border: 1px solid #000;
   align-items: center;
-  justify-content: space-around;
   z-index: 10;
+  top: 10px;
+  left: 10px;
 }
 
 .toolbar__button {
@@ -22,8 +21,9 @@
   background-color: #3934ea;
   color: #fff;
   border: 1px solid #3934ea;
-  border-radius: 5%;
+  border-radius: 5px;
   transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .toolbar__button:hover {

@@ -4,14 +4,12 @@ import InfiniteCanvas from './components/KonvaStage/KonvaStage'
 import Toolbar from './components/Toolbar/Toolbar'
 
 function App() {
-  const [tool, setTool] = useState<string | null>(null)
+  const [tool, setTool] = useState<string>('')
 
   return (
     <div className="app">
-      <Toolbar setTool={setTool} />
-      {/* <div className="app__canvasContainer"> */}
+      <Toolbar setTool={setTool} tool={tool} />
       <InfiniteCanvas tool={tool} />
-      {/* </div> */}
     </div>
   )
 }
