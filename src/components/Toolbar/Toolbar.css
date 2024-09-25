@@ -1,7 +1,7 @@
 .toolbar {
   display: flex;
   position: fixed;
-  background-color: #fff;
+  background-color: #999999;
   width: fit-content;
   height: fit-content;
   padding: 10px;
