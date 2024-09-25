@@ -1,6 +1,6 @@
 .toolbar {
   display: flex;
-  /* position: fixed; */
+  position: fixed;
   /* top: 0; */
   /* left: 50%; */
   /* transform: translate(-50%, 0); */
@@ -13,6 +13,7 @@
   border: 1px solid #000;
   align-items: center;
   justify-content: space-around;
+  z-index: 10;
 }
 
 .toolbar__button {

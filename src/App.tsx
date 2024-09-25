@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="app">
       <Toolbar setTool={setTool} />
-      <div>
-        <InfiniteCanvas tool={tool} />
-      </div>
+      {/* <div className="app__canvasContainer"> */}
+      <InfiniteCanvas tool={tool} />
+      {/* </div> */}
     </div>
   )
 }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Stage, Layer, Rect, Circle, Star } from 'react-konva'
 import './KonvaStage.css'
 import Konva from 'konva'
+import { KonvaEventObject } from 'konva/lib/Node'
 const InfiniteCanvas = (props: { tool: string | null }) => {
   type Shape = CustomCircle | CustomRectangle | CustomTriangle
 
@@ -28,56 +29,68 @@ const InfiniteCanvas = (props: { tool: string | null }) => {
     outerRadius: number
   }
 
+  const getRelativePointerPosition = (
+    node: Konva.Node,
+  ): { x: number; y: number } => {
+    const transform = node.getAbsoluteTransform().copy()
+    transform.invert()
+    return transform.point(
+      node.getStage()?.getPointerPosition() || { x: 0, y: 0 },
+    )
+  }
+
   const [shapes, setShapes] = useState<Shape[]>([])
 
-  const handleCanvasClick = (event: Konva.KonvaEventObject<MouseEvent>) => {
+  const handleCanvasClick = (event: KonvaEventObject<MouseEvent>) => {
     const stage = event.target.getStage()
-    const pointerPosition = stage?.getPointerPosition()
-    switch (props.tool) {
-      case 'circle': {
-        setShapes((prev) => [
-          ...prev,
-          {
-            type: 'circle',
-            x: pointerPosition?.x || 0,
-            y: pointerPosition?.y || 0,
-            radius: 30,
-            fill: 'blue',
-          },
-        ])
-        break
-      }
-      case 'rectangle': {
-        setShapes((prev) => [
-          ...prev,
-          {
-            type: 'rect',
-            x: pointerPosition?.x || 0,
-            y: pointerPosition?.y || 0,
-            width: 80,
-            height: 50,
-            fill: 'green',
-          },
-        ])
-        break
-      }
-      case 'triangle': {
-        setShapes((prev) => [
-          ...prev,
-          {
-            type: 'triangle',
-            x: pointerPosition?.x || 0,
-            y: pointerPosition?.y || 0,
-            fill: 'red',
-            innerRadius: 20,
-            outerRadius: 40,
-          },
-        ])
-        break
-      }
+    if (stage) {
+      const pointerPosition = getRelativePointerPosition(stage)
 
-      default:
-        break
+      switch (props.tool) {
+        case 'circle': {
+          setShapes((prev) => [
+            ...prev,
+            {
+              type: 'circle',
+              x: pointerPosition?.x || 0,
+              y: pointerPosition?.y || 0,
+              radius: 30,
+              fill: 'blue',
+            },
+          ])
+          break
+        }
+        case 'rectangle': {
+          setShapes((prev) => [
+            ...prev,
+            {
+              type: 'rect',
+              x: pointerPosition?.x || 0,
+              y: pointerPosition?.y || 0,
+              width: 80,
+              height: 50,
+              fill: 'green',
+            },
+          ])
+          break
+        }
+        case 'triangle': {
+          setShapes((prev) => [
+            ...prev,
+            {
+              type: 'triangle',
+              x: pointerPosition?.x || 0,
+              y: pointerPosition?.y || 0,
+              fill: 'red',
+              innerRadius: 20,
+              outerRadius: 40,
+            },
+          ])
+          break
+        }
+        default:
+          break
+      }
     }
   }
 
@@ -133,7 +146,7 @@ const InfiniteCanvas = (props: { tool: string | null }) => {
     <Stage
       width={window.innerWidth}
       height={window.innerHeight}
-      // draggable
+      draggable={!props.tool}
       onClick={handleCanvasClick}
       className="stage"
     >
