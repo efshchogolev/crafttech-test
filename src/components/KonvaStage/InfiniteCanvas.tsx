@@ -2,13 +2,9 @@ import { Stage, Layer, Rect, Circle, Star } from 'react-konva'
 import './InfiniteCanvas.css'
 import Konva from 'konva'
 import { KonvaEventObject } from 'konva/lib/Node'
-import { Shape } from '../../types'
+import { CanvasProps, Shape } from '../../types'
 
-const InfiniteCanvas = (props: {
-  tool: string
-  setShapes: React.Dispatch<React.SetStateAction<Shape[]>>
-  shapes: Shape[]
-}) => {
+const InfiniteCanvas = (props: CanvasProps) => {
   const getRelativePointerPosition = (
     node: Konva.Node,
   ): { x: number; y: number } => {

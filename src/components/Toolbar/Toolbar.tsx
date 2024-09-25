@@ -1,10 +1,8 @@
 import './Toolbar.css'
+import '../../types'
+import { ToolbarProps } from '../../types'
 
-const Toolbar = (props: {
-  setTool: React.Dispatch<React.SetStateAction<string>>
-  tool: string
-  onClearShapes: () => void
-}) => {
+const Toolbar = (props: ToolbarProps) => {
   return (
     <div className="toolbar">
       <select

@@ -22,3 +22,15 @@ type CustomTriangle = SimpleShape & {
   innerRadius: number
   outerRadius: number
 }
+
+export type ToolbarProps = {
+  setTool: React.Dispatch<React.SetStateAction<string>>
+  tool: string
+  onClearShapes: () => void
+}
+
+export type CanvasProps = {
+  tool: string
+  setShapes: React.Dispatch<React.SetStateAction<Shape[]>>
+  shapes: Shape[]
+}
