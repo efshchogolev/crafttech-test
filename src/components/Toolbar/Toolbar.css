@@ -1,0 +1,30 @@
+.toolbar {
+  display: flex;
+  /* position: fixed; */
+  /* top: 0; */
+  /* left: 50%; */
+  /* transform: translate(-50%, 0); */
+  background-color: #fff;
+  width: 200px;
+  height: fit-content;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid #000;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.toolbar__button {
+  width: fit-content;
+  height: 30px;
+  background-color: #3934ea;
+  color: #fff;
+  border: 1px solid #3934ea;
+  border-radius: 5%;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.toolbar__button:hover {
+  opacity: 0.6;
+}
