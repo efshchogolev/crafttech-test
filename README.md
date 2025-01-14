@@ -7,7 +7,7 @@
    - **Button 1**: A dropdown menu containing three shapes that can be added to the canvas after selection.
    - **Button 2**: A cursor tool to interact with added shapes (e.g., dragging them across the canvas).
 
-***Timeline: 2 days***
+***Deadline: 2 days***
 
 ### **Implemented Features**
 
